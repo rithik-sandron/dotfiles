@@ -1,22 +1,21 @@
-#! /usr/bin/zsh
+#! /bin/bash
 
 echo -n 'Please provide a name [GitHub name prefered]: 👽'
 read name
+
+echo -n 'Do you want to generate key for GitHub [y/n]: '
+read gflag
+
+if [ "y" == "$gflag" ] || [ "Y" = "$gflag" ]; then 
 
 echo -n 'Please provide your mail ID [GitHub mail prefered]: 📩'
 read mail
 
 echo "
 [user]
-	name = Rithik
+	name = "$name"
 	email = "$mail"
 "  >>  .gitconfig
-
-# system linking dotfiles in the base directory
-ln -s ~/.dotfiles/.zshrc ~/.zshrc
-ln -s ~/.dotfiles/.zprofile ~/.zprofile
-ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
-ln -s ~/.dotfiles/.hushlogin ~/.hushlogin
 
 # github ssh setup
 ssh-keygen -t ed25519 -C "$mail"
@@ -40,6 +39,14 @@ ssh-add ~/.ssh/id_ed25519
 
 # adding your SSH key to the ssh-agent
 eval "$(ssh-agent -s)"
+
+fi
+
+# system linking dotfiles in the base directory
+ln -s ~/.dotfiles/.zshrc ~/.zshrc
+ln -s ~/.dotfiles/.zprofile ~/.zprofile
+ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
+ln -s ~/.dotfiles/.hushlogin ~/.hushlogin
 
 # check for Homebrew to be present, install if it's missing
 if test ! $(which brew); then
@@ -95,4 +102,4 @@ defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 echo "🕘 installing xcode, might take some time..."
 xcode-select --install
 
-echo "✅ "$mail"'s mac setup completed!"
+echo "✅ "$name"'s mac setup completed!"
