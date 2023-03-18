@@ -23,5 +23,5 @@ gh ssh-key add ~/.ssh/id_ed25519.pub
 
 4. change your name and email in `.gitconfig` file
 ```
-nano ~/.dotfiles/.gitconfig
+nano ~/dotfiles/.gitconfig
 ```

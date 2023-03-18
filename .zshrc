@@ -1,4 +1,4 @@
-source ~/.dotfiles/.aliases
+source ~/dotfiles/.aliases
 
 autoload -Uz vcs_info
 precmd() { vcs_info }
