@@ -1,6 +1,7 @@
 #listing
 alias l='ls -ltr'
 alias la='ls -lart'
+alias c='clear'
 
 #git
 alias gs='git status'
