@@ -42,14 +42,21 @@ eval "$(ssh-agent -s)"
 
 fi
 
+# system linking dotfiles in the base directory
+ln -s ~/dotfiles/.gitconfig ~/.gitconfig
+ln -s ~/dotfiles/.hushlogin ~/.hushlogin
+ln -s ~/dotfiles/.aliases ~/.aliases
+ln -s ~/dotfiles/.zshrc ~/.zshrc
+ln -s ~/dotfiles/.zprofile ~/.zprofile
+
 # check for Homebrew to be present, install if it's missing
 if test ! $(which brew); then
     echo "installing homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-	# added below cmd to the dotfiles .zprofile
-	#echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> /Users/$USER/.zprofile
-	eval $(/opt/homebrew/bin/brew shellenv)
+    # added below cmd to the dotfiles .zprofile
+    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/ryuu/.zprofile
+    eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 echo "🚫 disabling homebrew analytics..."
@@ -72,9 +79,6 @@ do
 	brew install ${package}
 done
 
-echo "cleaning up homebrew..."
-brew cleanup
-
 # casks to be installed
 CASKS=(
 	intellij-idea-ce
@@ -90,17 +94,24 @@ do
 	brew install --cask ${cask}
 done
 
+# for visual studio code
+cat << EOF >> ~/.zprofile
+# Add Visual Studio Code (code)
+export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+EOF
+
+# for java11
+sudo ln -sfn /opt/homebrew/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
+echo 'export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"' >> ~/.zshrc
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk@11/include"
+
+echo "cleaning up homebrew..."
+brew cleanup
+
 # Show filename extensions by default
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 
 echo "🕘 installing xcode, might take some time..."
 xcode-select --install
-
-# system linking dotfiles in the base directory
-ln -s ~/dotfiles/.gitconfig ~/.gitconfig
-ln -s ~/dotfiles/.hushlogin ~/.hushlogin
-ln -s ~/dotfiles/.aliases ~/.aliases
-ln -s ~/dotfiles/.zshrc ~/.zshrc
-ln -s ~/dotfiles/.zprofile ~/.zprofile
 
 echo "✅ "$name"'s mac setup completed!"
