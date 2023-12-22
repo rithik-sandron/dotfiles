@@ -1,5 +1,8 @@
 #! /bin/bash
 
+# get current username of the mac
+username = $(id -un)
+
 echo -n 'Please provide a name [GitHub name prefered]: 👽'
 read name
 
@@ -55,7 +58,7 @@ if test ! $(which brew); then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
     # added below cmd to the dotfiles .zprofile
-    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/ryuu/.zprofile
+    (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/"$username"/.zprofile
     eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
