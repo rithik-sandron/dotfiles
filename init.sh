@@ -73,7 +73,14 @@ brew update
 PACKAGES=(
 	git
 	node
-	java11
+ 	# python@3.12
+	openjdk
+ 	rust
+ 	gradle
+  	maven
+  	deno
+   	sqlite
+    	redis
 )
 
 for package in "${PACKAGES[@]}"
@@ -84,9 +91,9 @@ done
 
 # casks to be installed
 CASKS=(
-	intellij-idea-ce
+	# intellij-idea-ce
 	visual-studio-code
-	steam
+	# steam
 	firefox
 	github
 )
