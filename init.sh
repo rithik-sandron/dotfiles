@@ -110,11 +110,6 @@ cat << EOF >> ~/.zprofile
 export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 EOF
 
-# for java11
-sudo ln -sfn /opt/homebrew/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
-echo 'export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"' >> ~/.zshrc
-export CPPFLAGS="-I/opt/homebrew/opt/openjdk@11/include"
-
 echo "cleaning up homebrew..."
 brew cleanup
 
