@@ -104,11 +104,12 @@ do
 	brew install --cask ${cask}
 done
 
-# for visual studio code
-cat << EOF >> ~/.zprofile
 # Add Visual Studio Code (code)
 export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-EOF
+
+# for openjdk
+echo '\nexport PATH="/opt/homebrew/opt/openjdk/bin:$PATH"' >> ~/.zshrc
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 
 echo "cleaning up homebrew..."
 brew cleanup
