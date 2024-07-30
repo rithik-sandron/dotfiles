@@ -1,7 +1,29 @@
 #listing
-alias l='ls -ltr'
-alias la='ls -lart'
+alias ls='ls --color=always'
+alias l='ls -ltr --color=always'
+alias la='ls -lart --color=always'
 alias c='clear'
+alias k='kubectl'
+alias j='jobs -l'
+alias pl='pwd ; ls'
+# Extra tail piping is added coz $(history 10) is not wokring for some reason. 
+alias h1='history | tail -n 10'
+alias h2='history | tail -n 20'
+alias year='echo $(date +"%Y")'
+alias age='echo $[$(year) - 1997]'
+
+# Sun, Sat
+alias day='date +%a'
+
+# Tuesday, October 21, 2024
+alias datef='date +'%A, %B %d, %Y''
+
+# 10/21/24
+alias dateo='date +'%d/%m/%y''
+alias mv='mv -b'
+alias rm='rm -b'
+alias cp='cp -b'
+alias grep='grep --color'
 
 #git
 alias gs='git status'
