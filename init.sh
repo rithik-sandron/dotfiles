@@ -105,7 +105,7 @@ do
 done
 
 # Add Visual Studio Code (code)
-export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+echo '\nexport PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"' >> ~/.zshrc
 
 # for openjdk
 echo '\nexport PATH="/opt/homebrew/opt/openjdk/bin:$PATH"' >> ~/.zshrc
