@@ -1,7 +1,7 @@
 #! /bin/bash
 
 # get current username of the mac
-username = $(id -un)
+username=$(id -un)
 
 echo -n 'Please provide a name [GitHub name prefered]: 👽'
 read name
