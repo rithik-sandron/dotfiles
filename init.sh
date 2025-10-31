@@ -9,7 +9,7 @@ read name
 echo -n 'Do you want to generate key for GitHub [y/n]: '
 read gflag
 
-if [ "y" == "$gflag" ] || [ "Y" = "$gflag" ]; then 
+if [ "y" = "$gflag" ] || [ "Y" = "$gflag" ]; then 
 
 echo -n 'Please provide your mail ID [GitHub mail prefered]: 📩'
 read mail
@@ -45,12 +45,18 @@ eval "$(ssh-agent -s)"
 
 fi
 
+echo "🕘 installing xcode, might take some time..."
+xcode-select --install
+
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+echo "$script_dir"
+
 # system linking dotfiles in the base directory
-ln -s ~/dotfiles/.gitconfig ~/.gitconfig
-ln -s ~/dotfiles/.hushlogin ~/.hushlogin
-ln -s ~/dotfiles/.aliases ~/.aliases
-ln -s ~/dotfiles/.zshrc ~/.zshrc
-ln -s ~/dotfiles/.zprofile ~/.zprofile
+cp $script_dir/.aliases ~/
+cp $script_dir/.gitconfig ~/
+cp $script_dir/.hushlogin ~/
+cp $script_dir/.zshrc ~/
+cp $script_dir/.zprofile ~/
 
 # check for Homebrew to be present, install if it's missing
 if test ! $(which brew); then
@@ -72,15 +78,8 @@ brew update
 # packages to be installed
 PACKAGES=(
 	git
-	node
- 	# python@3.12
-	openjdk
- 	rust
- 	gradle
-  	maven
-  	deno
+	shfmt
    	sqlite
-    	redis
 )
 
 for package in "${PACKAGES[@]}"
@@ -91,11 +90,9 @@ done
 
 # casks to be installed
 CASKS=(
-	# intellij-idea-ce
 	visual-studio-code
-	# steam
-	firefox
-	github
+	steam
+	spotify
 )
 
 for cask in "${CASKS[@]}"
@@ -116,8 +113,5 @@ brew cleanup
 
 # Show filename extensions by default
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-
-echo "🕘 installing xcode, might take some time..."
-xcode-select --install
 
 echo "✅ "$name"'s mac setup completed!"
