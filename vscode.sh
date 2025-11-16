@@ -1,43 +1,81 @@
-#!/bin/bash
+#!/bin/zsh
 
-# VSCode User settings directory for Homebrew macOS install
-VSCODE_SETTINGS_DIR="$HOME/Library/Application Support/Code/User"
-EXTENSIONS_DIR="$HOME/.vscode/extensions"
-EXPORT_DIR="vscode-backup"
+SETTINGS_PATH="$HOME/Library/Application Support/Code/User/settings.json"
 
-export_vscode() {
-  echo "Exporting VSCode extensions and settings..."
-
-  # Create export directory
-  mkdir -p "$EXPORT_DIR/extensions"
-  mkdir -p "$EXPORT_DIR/settings"
-
-  # Copy extensions directory
-  echo "Copying extensions..."
-  cp -r "$EXTENSIONS_DIR/"* "$EXPORT_DIR/extensions/"
-
-  # Copy key settings files and snippets folder
-  echo "Copying settings files..."
-  cp "$VSCODE_SETTINGS_DIR/settings.json" "$EXPORT_DIR/settings/" 2>/dev/null
-  cp -r "$VSCODE_SETTINGS_DIR/snippets" "$EXPORT_DIR/settings/" 2>/dev/null
-
-  echo "Export completed to $EXPORT_DIR"
+# Write custom theme JSON config to settings.json
+cat >"$SETTINGS_PATH" <<EOF
+{
+  "workbench.colorTheme": "Ryuu Blaze",
+  "editor.fontSize": 13,
+  "terminal.integrated.fontSize": 12,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 2000,
+  "workbench.colorCustomizations": {
+    "editor.background": "#171717",
+    "editor.foreground": "#ebdbb2",
+    "editor.lineHighlightBackground": "#32302f",
+    "editor.selectionBackground": "#504945",
+    "editorCursor.foreground": "#fabd2f",
+    "editor.inactiveSelectionBackground": "#1d2021",
+    "editorIndentGuide.background": "#504945",
+    "editorIndentGuide.activeBackground": "#fabd2f",
+    "sideBar.background": "#171717",
+    "sideBar.foreground": "#ebdbb2",
+    "statusBar.background": "#121212",
+    "statusBar.foreground": "#ebdbb2",
+    "activityBar.background": "#171717",
+    "activityBar.foreground": "#ebdbb2",
+    "titleBar.activeBackground": "#1a1a1a",
+    "titleBar.activeForeground": "#ebdbb2",
+    "tab.activeBackground": "#171717",
+    "tab.inactiveBackground": "#1d2021",
+    "tab.activeForeground": "#ebdbb2",
+    "tab.inactiveForeground": "#7c6f64"
+  },
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": ["comment", "punctuation.definition.comment", "string.comment"],
+        "settings": { "foreground": "#928374", "fontStyle": "italic" }
+      },
+      {
+        "scope": ["keyword", "storage.type", "storage.modifier"],
+        "settings": { "foreground": "#df4934", "fontStyle": "bold" }
+      },
+      {
+        "scope": ["constant", "variable.language", "entity.name.constant"],
+        "settings": { "foreground": "#fb4934" }
+      },
+      {
+        "scope": ["string", "entity.name.tag", "markup.changed"],
+        "settings": { "foreground": "#b8bb26" }
+      },
+      {
+        "scope": ["support.function", "keyword.operator"],
+        "settings": { "foreground": "#fe8019" }
+      },
+      {
+        "scope": ["variable", "parameter", "entity.name.variable"],
+        "settings": { "foreground": "#ebdbb2" }
+      },
+      {
+        "scope": ["invalid", "invalid.illegal"],
+        "settings": { "foreground": "#fb4934", "fontStyle": "underline" }
+      }
+    ]
+  }
+  "[shellscript]": {
+        "editor.defaultFormatter": "mkhl.shfmt",
+        "editor.formatOnSave": true,
+        "editor.tabSize": 4
+  },
 }
+EOF
 
-import_vscode() {
-  echo "Importing VSCode extensions and settings..."
-
-  # Copy extensions back
-  echo "Copying extensions..."
-  cp -r "$EXPORT_DIR/extensions/"* "$EXTENSIONS_DIR/"
-
-  # Copy settings files
-  echo "Copying settings files..."
-  cp "$EXPORT_DIR/settings/settings.json" "$VSCODE_SETTINGS_DIR/" 2>/dev/null
-  cp -r "$EXPORT_DIR/settings/snippets" "$VSCODE_SETTINGS_DIR/" 2>/dev/null
-
-  echo "Import completed."
-}
-
-export_vscode
-import_vscode
+# install extensions
+source $HOME/.zshrc
+code --install-extension mkhl.shfmt
+code --install-extension esbenp.prettier-vscode
+echo "VS Code settings.json updated."

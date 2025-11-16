@@ -1,14 +1,17 @@
-# My 🖥️ Mac setup automation and dotfiles 
-## If you wish to use it,
-1. Copy the files to your `~` directory.
-2. Run `./init.sh` (for Mac setup automation)
-3. Provide a mac username & GitHub mail (if you wish to setup your git ssh).
-4. Run `gh ssh-key add ~/.ssh/id_ed25519.pub` to copy your ssh key and add it to your GitHub account.
+# My 🖥️ Mac Setup Automation and Dotfiles 🚀
 
-## This will 
-- Sets an useful minimal zsh theme I created.
-- Generates ssh key for your GitHub acoount.
-- Installs HomeBrew, IDEs & other necessary packages.
-- Adds useful aliases for generic terminal commands.
-- Disables telemetries & other analytics.
-- Shows file extension which is not on by default in Mac.
+## If you wish to use it, follow these steps:
+
+1. Run `./init.sh` ⚙️  
+2. Provide your Mac username & GitHub email (if you want to set up Git SSH) ✍️  
+3. Run `gh ssh-key add ~/.ssh/id_ed25519.pub` to copy your SSH key and add it to your GitHub account 🔑
+
+## This will:
+
+- Set a useful minimal Zsh theme I created 🎨  
+- Generate an SSH key for your GitHub account 🔐  
+- Install Homebrew, IDEs & other necessary packages 📦  
+- Add useful aliases for generic terminal commands ⌨️  
+- Disable telemetry & other analytics 🚫📊  
+- Show file extensions (which are off by default on Mac) 📂  
+- Import VSCode settings and install recommended extensions 🖥️✨  
