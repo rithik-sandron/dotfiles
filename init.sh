@@ -6,7 +6,7 @@ username=$(id -un)
 chmod u+x *.sh
 ./github.sh
 ./packages.sh
-./vscode.sh
+# ./vscode.sh
 ./terminal.sh
 
 # Show filename extensions by default

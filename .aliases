@@ -3,43 +3,22 @@ alias ls='ls --color=always'
 alias l='ls -ltr --color=always'
 alias la='ls -lart --color=always'
 alias c='clear'
-alias k='kubectl'
-alias j='jobs -l'
-alias pl='pwd ; ls'
+alias grep='grep --color'
 # Extra tail piping is added coz $(history 10) is not wokring for some reason. 
 alias h1='history | tail -n 10'
 alias h2='history | tail -n 20'
+
+#date
+alias day='date +%a'
 alias year='echo $(date +"%Y")'
 alias age='echo $[$(year) - 1997]'
-
-# Sun, Sat
-alias day='date +%a'
-
-# Tuesday, October 21, 2024
-alias datef='date +'%A, %B %d, %Y''
-
-# 10/21/24
-alias dateo='date +'%d/%m/%y''
-alias mv='mv -b'
-alias rm='rm -b'
-alias cp='cp -b'
-alias grep='grep --color'
 
 #git
 alias gs='git status'
 alias ga='git add'
 alias gp='git push'
-alias gpo='git push origin'
-alias gtd='git tag --delete'
-alias gtdr='git tag --delete origin'
-alias gr='git branch -r'
-alias gplo='git pull origin'
-alias gb='git branch '
-alias gc='git commit'
-alias gd='git diff'
-alias gco='git checkout '
-alias gl='git log'
-alias gr='git remote'
-alias grs='git remote show'
-alias glo='git log --pretty="oneline"'
-alias glol='git log --graph --oneline --decorate'
+alias gc='git checkout'
+
+#tools
+alias k='kubectl'
+alias tf='terraform'

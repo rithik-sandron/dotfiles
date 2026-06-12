@@ -33,13 +33,27 @@ brew analytics off
 echo "updating brew..."
 brew update
 
+brew tap hashicorp/tap
+
 # packages to be installed
 PACKAGES=(
 	git
 	gh
 	shfmt
-	sqlite
+	kubectl
+	helm
+	hashicorp/tap/terraform
+	anomalyco/tap/opencode
+	uv
+	argocd
+	redis
+	podman
+	kind
 )
+
+echo 'eval "$(uv generate-shell-completion zsh)"' >>"$zshrc"
+echo 'eval "$(uvx --generate-shell-completion zsh)"' >>"$zshrc"
+uv tool install mlx-lm
 
 for package in "${PACKAGES[@]}"; do
 	echo "🔸 installing ${package}..."
@@ -48,9 +62,9 @@ done
 
 # casks to be installed
 CASKS=(
-	visual-studio-code
-	steam
-	spotify
+	google-cloud-sdk
+	zed
+	# visual-studio-code
 )
 
 for cask in "${CASKS[@]}"; do
