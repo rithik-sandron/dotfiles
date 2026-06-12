@@ -1,14 +1,14 @@
 #! /bin/zsh
 
-echo -n 'Please provide a GitHub name: 👽'
-read name
-
 echo -n 'Do you want to generate key for GitHub [y/n]: '
 read gflag
 
 if [ "y" = "$gflag" ] || [ "Y" = "$gflag" ]; then
 
-	echo -n 'Please provide your mail ID [GitHub mail prefered]: 📩'
+	echo -n 'Please provide a GitHub name: 👽 '
+	read name
+
+	echo -n 'Please provide your github mail ID: 📩 '
 	read mail
 
 	echo "

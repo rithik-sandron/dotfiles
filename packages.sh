@@ -17,10 +17,7 @@ echo "installing homebrew..."
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # added below cmd to the dotfiles .zprofile
-(
-	echo
-	echo 'eval "$(/opt/homebrew/bin/brew shellenv)"'
-) >>~/.zshrc
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>~/.zshrc
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 echo "🚫 disabling homebrew analytics..."
@@ -30,22 +27,24 @@ brew analytics off
 echo "updating brew..."
 brew update
 
-brew tap hashicorp/tap
-
 # packages to be installed
 PACKAGES=(
 	git
 	gh
 	shfmt
+
+	# devops
 	kubectl
 	helm
-	hashicorp/tap/terraform
-	anomalyco/tap/opencode
 	uv
 	argocd
 	redis
 	podman
 	kind
+	opentofu
+
+	# ai
+	anomalyco/tap/opencode
 )
 
 echo 'eval "$(uv generate-shell-completion zsh)"' >>"$zshrc"
@@ -61,7 +60,6 @@ done
 CASKS=(
 	google-cloud-sdk
 	zed
-	# visual-studio-code
 )
 
 for cask in "${CASKS[@]}"; do
