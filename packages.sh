@@ -13,18 +13,15 @@ cp $script_dir/.zshrc ~/
 cp $script_dir/.zshenv ~/
 cp $script_dir/.zprofile ~/
 
-# check for Homebrew to be present, install if it's missing
-if test ! $(which brew); then
-	echo "installing homebrew..."
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+echo "installing homebrew..."
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-	# added below cmd to the dotfiles .zprofile
-	(
-		echo
-		echo 'eval "$(/opt/homebrew/bin/brew shellenv)"'
-	) >>~/.zprofile
-	eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
+# added below cmd to the dotfiles .zprofile
+(
+	echo
+	echo 'eval "$(/opt/homebrew/bin/brew shellenv)"'
+) >>~/.zshrc
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 echo "🚫 disabling homebrew analytics..."
 brew analytics off
