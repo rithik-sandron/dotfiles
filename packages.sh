@@ -29,42 +29,43 @@ brew update
 
 # packages to be installed
 PACKAGES=(
-	git
-	gh
-	shfmt
+    git
+    gh
+    shfmt
 
-	# devops
-	kubectl
-	helm
-	uv
-	argocd
-	redis
-	podman
-	kind
-	opentofu
+    # devops
+    kubectl
+    helm
+    uv
+    argocd
+    redis
+    podman
+    kind
+    opentofu
 
-	# ai
-	anomalyco/tap/opencode
+    # ai
+    anomalyco/tap/opencode
 )
 
 echo 'eval "$(uv generate-shell-completion zsh)"' >>"$zshrc"
 echo 'eval "$(uvx --generate-shell-completion zsh)"' >>"$zshrc"
 uv tool install mlx-lm
+uv tool update-shell
 
 for package in "${PACKAGES[@]}"; do
-	echo "🔸 installing ${package}..."
-	brew install ${package}
+    echo "🔸 installing ${package}..."
+    brew install ${package}
 done
 
 # casks to be installed
 CASKS=(
-	google-cloud-sdk
-	zed
+    google-cloud-sdk
+    zed
 )
 
 for cask in "${CASKS[@]}"; do
-	echo "🔹 installing ${cask}..."
-	brew install --cask ${cask}
+    echo "🔹 installing ${cask}..."
+    brew install --cask ${cask}
 done
 
 cat <<EOF >>~/.zprofile

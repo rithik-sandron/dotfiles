@@ -4,7 +4,7 @@ alias l='ls -ltr --color=always'
 alias la='ls -lart --color=always'
 alias c='clear'
 alias grep='grep --color'
-# Extra tail piping is added coz $(history 10) is not wokring for some reason. 
+# Extra tail piping is added coz $(history 10) is not wokring for some reason.
 alias h1='history | tail -n 10'
 alias h2='history | tail -n 20'
 
@@ -22,3 +22,4 @@ alias gc='git checkout'
 #tools
 alias k='kubectl'
 alias tf='terraform'
+alias t='task'
