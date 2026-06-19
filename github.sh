@@ -5,39 +5,39 @@ read gflag
 
 if [ "y" = "$gflag" ] || [ "Y" = "$gflag" ]; then
 
-	echo -n 'Please provide a GitHub name: 👽 '
-	read name
+  echo -n 'Please provide a GitHub name: 👽 '
+  read name
 
-	echo -n 'Please provide your github mail ID: 📩 '
-	read mail
+  echo -n 'Please provide your github mail ID: 📩 '
+  read mail
 
-	echo "
+  echo "
 [user]
 	name = "$name"
 	email = "$mail"
 " >>~/dotfiles/.gitconfig
 
-	# github ssh setup
-	ssh-keygen -t ed25519 -C "$mail"
-	# accept default location
-	# provide a passphrase
-	if test ! -f "~/.ssh/config"; then
-		touch ~/.ssh/config
-	fi
+  # github ssh setup
+  ssh-keygen -t ed25519 -C "$mail"
+  # accept default location
+  # provide a passphrase
+  if test ! -f "~/.ssh/config"; then
+    touch ~/.ssh/config
+  fi
 
-	cat <<EOF >~/.ssh/config
+  cat <<EOF >~/.ssh/config
 Host *.github.com
   AddKeysToAgent yes
   IgnoreUnknown UseKeychain
   IdentityFile ~/.ssh/id_ed25519
 EOF
 
-	# adding SSH private key to the ssh-agent
-	ssh-add ~/.ssh/id_ed25519
+  # adding SSH private key to the ssh-agent
+  ssh-add ~/.ssh/id_ed25519
 
-	# Add the SSH key to your account on GitHub. For more information, see "Adding a new SSH key to your GitHub account."
+  # Add the SSH key to your account on GitHub. For more information, see "Adding a new SSH key to your GitHub account."
 
-	# adding your SSH key to the ssh-agent
-	eval "$(ssh-agent -s)"
+  # adding your SSH key to the ssh-agent
+  eval "$(ssh-agent -s)"
 
 fi

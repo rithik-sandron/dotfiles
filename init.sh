@@ -4,10 +4,11 @@
 username=$(id -un)
 
 chmod u+x *.sh
+./terminal.sh
 ./github.sh
 ./packages.sh
-# ./vscode.sh
-./terminal.sh
+./zed.sh
+./vscode.sh
 
 # Show filename extensions by default
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true

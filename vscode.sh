@@ -4,12 +4,12 @@ echo -n 'Do you want to setup visual studio code config [y/n]: '
 read vflag
 
 if [ "y" = "$vflag" ] || [ "Y" = "$vflag" ]; then
-	brew install visual-studio-code
+  brew install visual-studio-code
 
-	SETTINGS_PATH="$HOME/Library/Application Support/Code/User/settings.json"
+  SETTINGS_PATH="$HOME/Library/Application Support/Code/User/settings.json"
 
-	# Write custom theme JSON config to settings.json
-	cat >"$SETTINGS_PATH" <<EOF
+  # Write custom theme JSON config to settings.json
+  cat >"$SETTINGS_PATH" <<EOF
 	{
 	"workbench.colorTheme": "Ryuu Blaze",
 	"editor.fontSize": 13,
@@ -80,10 +80,15 @@ if [ "y" = "$vflag" ] || [ "Y" = "$vflag" ]; then
 	}
 EOF
 
-	# install extensions
-	source $HOME/.zshrc
-	code --install-extension mkhl.shfmt
-	code --install-extension esbenp.prettier-vscode
-	echo "VS Code settings.json updated."
+  # install extensions
+  source $HOME/.zshrc
+  code --install-extension mkhl.shfmt
+  code --install-extension esbenp.prettier-vscode
+  echo "VS Code settings.json updated."
+
+  cat <<EOF >>~/.zprofile
+# Add Visual Studio Code (code)
+export PATH="\$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+EOF
 
 fi
